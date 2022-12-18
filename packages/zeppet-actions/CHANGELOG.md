@@ -1,5 +1,17 @@
 # @zeppet/actions
 
+## 4.0.0
+
+### Minor Changes
+
+- Finally fixed versioning
+
+### Patch Changes
+
+- Updated dependencies
+  - @zeppet/core@4.0.0
+  - @zeppet/utils@4.0.0
+
 ## 3.0.0
 
 ### Minor Changes
