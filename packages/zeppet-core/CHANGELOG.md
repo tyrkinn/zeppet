@@ -1,5 +1,15 @@
 # @zeppet/core
 
+## 1.1.0
+
+### Minor Changes
+
+- 175bdf6: Packages fix
+
+### Patch Changes
+
+- 175bdf6: Update package summary
+
 ## 1.0.0
 
 ### Major Changes
