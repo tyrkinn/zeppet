@@ -1,0 +1,13 @@
+import './style.css';
+import { select } from '@zeppet/core';
+import { addHandler, onClickClassToggle } from '@zeppet/actions';
+
+
+
+select('.btn')!.use(
+  onClickClassToggle(
+    addHandler('click', (e) => {
+      console.log('click')
+    })
+  )
+)
