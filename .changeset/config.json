@@ -3,10 +3,7 @@
   "changelog": "@changesets/cli/changelog",
   "baseBranch": "main",
   "commit": false,
-  "fixed": [],
-  "linked": [],
   "access": "public",
-  "updateInternalDependencies": "patch",
   "ignore": ["@zeppet/docs", "@zeppet/example"],
   "fixed": [["@zeppet/*"]]
 }
