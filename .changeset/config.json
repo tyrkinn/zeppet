@@ -8,5 +8,6 @@
   "access": "public",
   "updateInternalDependencies": "patch",
   "ignore": ["@zeppet/docs", "@zeppet/example"],
-  "linked": [["@zeppet/actions", "@zeppet/core"]]
+  "linked": [["@zeppet/actions", "@zeppet/core"]],
+  "fixed": [["@zeppet/*"]]
 }
