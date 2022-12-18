@@ -1,5 +1,11 @@
 # @zeppet/tsconfig
 
+## 3.0.0
+
+### Minor Changes
+
+- 7f8a658: Fix versioning errors
+
 ## 1.1.0
 
 ### Minor Changes
