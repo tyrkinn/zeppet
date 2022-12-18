@@ -1,5 +1,11 @@
 # eslint-config-zeppet
 
+## 1.2.0
+
+### Minor Changes
+
+- 7f8a658: Fix versioning errors
+
 ## 1.1.0
 
 ### Minor Changes

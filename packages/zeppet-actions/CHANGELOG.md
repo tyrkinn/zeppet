@@ -1,5 +1,17 @@
 # @zeppet/actions
 
+## 3.0.0
+
+### Minor Changes
+
+- 7f8a658: Fix versioning errors
+
+### Patch Changes
+
+- Updated dependencies [7f8a658]
+  - @zeppet/core@3.0.0
+  - @zeppet/utils@3.0.0
+
 ## 2.0.0
 
 ### Minor Changes
