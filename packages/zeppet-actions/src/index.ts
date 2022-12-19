@@ -6,8 +6,8 @@ export const setText = (text: string): ActionFn => element => {
   return element;
 }
 
-export const addClass = (newClass: string): ActionFn => element => {
-  element.classList.add(newClass);
+export const addClass = (...classes: string[]): ActionFn => element => {
+  element.classList.add(...classes);
   return element;
 }
 
