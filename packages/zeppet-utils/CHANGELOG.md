@@ -1,5 +1,13 @@
 # @zeppet/utils
 
+## 0.0.5
+
+### Patch Changes
+
+- Minified dist
+- Updated dependencies
+  - @zeppet/core@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
