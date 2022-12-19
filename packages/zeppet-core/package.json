@@ -4,6 +4,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "typedocMain": "src/index.ts",
   "sideEffects": false,
   "license": "MIT",
   "files": [

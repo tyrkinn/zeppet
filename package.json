@@ -1,5 +1,9 @@
 {
   "private": true,
+  "workspaces": [
+    "packages/zeppet-core",
+    "packages/zeppet-actions"
+  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --no-cache --parallel --continue",
@@ -8,7 +12,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=docs^... && changeset publish"
+    "release": "turbo run build --filter=docs^... && changeset publish",
+    "gen-docs": "typedoc --entryPointStrategy packages ."
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",

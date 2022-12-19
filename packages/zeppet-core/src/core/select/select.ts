@@ -28,6 +28,42 @@ const createSelect = <T extends HTMLElement>(node: T | NodeListOf<T>): Select<T>
   }
 })
 
+/**
+  * Select one or multiple elements by CSS selector
+  *
+  * @typeParam T - HTMLElement kind
+  * 
+  * @remarks
+  * You can provide type parameter to specify type of HTMLElement
+  *
+  * @example
+  * Singe select example
+  * ```
+  * // HTML - <div id="app"> </div>
+  * const divSelect = select<HTMLDivElement>("#app"); // -> Select<HTMLDivElement>
+  * const wrongSelect = select("#wrong"); // -> undefined
+  * ```
+  *
+  * @example
+  * Multi select example
+  * ```
+  * // HTML <div id="item"></div><br/><div id="item"></div>
+  * const divsSelect = select('#item') // -> Select containing both divs
+  * ```
+  * 
+  * @example
+  * Use function 
+  * ```
+  * // HTML <div id="item"></div>
+  * // Here using setText action from @zeppet/actions
+  * select("#item")!.use(setText("Hello World"))
+  * // Out HTML <div id="item">Hello World</div>
+  * ```
+  *
+  * @param selector - CSS selector to search elements by
+  *
+  * @returns Select object or undefined if no elements matching given selector
+  */
 export const select = <T extends HTMLElement>(selector: string): Select<T> | undefined => {
   const nodes = document.querySelectorAll<T>(selector)
 
