@@ -23,8 +23,7 @@
     "typescript": "^4.5.3"
   },
   "peerDependencies": {
-    "@zeppet/core": "workspace:*",
-    "@zeppet/utils": "workspace:*"
+    "@zeppet/core": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

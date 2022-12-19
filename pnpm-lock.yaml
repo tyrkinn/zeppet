@@ -70,14 +70,12 @@ importers:
     specifiers:
       '@zeppet/core': workspace:*
       '@zeppet/tsconfig': workspace:*
-      '@zeppet/utils': workspace:*
       eslint: ^7.32.0
       eslint-config-zeppet: workspace:*
       tsup: ^5.10.1
       typescript: ^4.5.3
     dependencies:
       '@zeppet/core': link:../zeppet-core
-      '@zeppet/utils': link:../zeppet-utils
     devDependencies:
       '@zeppet/tsconfig': link:../zeppet-tsconfig
       eslint: 7.32.0
