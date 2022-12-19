@@ -14,16 +14,19 @@ type Mutator<T> = (previousValue: T) => T;
 type Mutate<T> = (mutator: Mutator<T>) => void;
 type Listener<T> = (newValue: T) => void;
 type Subscribe<T> = (listenerFn: Listener<T>) => void;
+type SubscribeMap<T> = <K>(listener: Listener<K>, mapping: (value: T) => K) => void;
 type Observer<T> = {
     getValue: () => T;
     mutate: Mutate<T>;
     subscribe: Subscribe<T>;
+    subscribeMap: SubscribeMap<T>;
 };
 
 declare const select: <T extends HTMLElement>(selector: string) => Select<T> | undefined;
+declare const selectNode: <T extends HTMLElement>(node: T) => Select<T>;
 
 declare const compose: ComposeFn;
 
 declare const observe: <T>(defaultValue: T) => Observer<T>;
 
-export { Action, ActionFn, ComposeFn, Listener, Mutate, Mutator, ObserveFn, Observer, Select, SelectFn, Subscribe, UseFunction, compose, observe, select };
+export { Action, ActionFn, ComposeFn, Listener, Mutate, Mutator, ObserveFn, Observer, Select, SelectFn, Subscribe, SubscribeMap, UseFunction, compose, observe, select, selectNode };

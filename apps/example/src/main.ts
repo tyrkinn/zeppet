@@ -1,24 +1,26 @@
 import './style.css';
-import { select, observe, Observer } from '@zeppet/core';
-import { addClass, setText, bindFieldToObserver, mutateOnEvent, bindInput } from '@zeppet/actions';
+import { select, observe, compose } from '@zeppet/core';
+import { bindInput, bindFieldToObs } from '@zeppet/actions';
 
-const textObs = observe("Some text");
+const useBindedInputAction = <T extends HTMLElement>() => {
+  const inputObs = observe("");
+  return {
+    input: compose(
+      bindInput(inputObs),
+    ),
+    p: compose<T>(
+      bindFieldToObs('textContent', inputObs)
+    )
+  }
+}
 
-select('.btn')!.use(
-  setText('Button'),
-  addClass('button'),
-  mutateOnEvent('click', textObs, (prev) => prev)
+const { p, input } = useBindedInputAction<HTMLButtonElement>()
+
+select<HTMLInputElement>("#inp")!.use(
+  input
 )
 
-select('.text')!.use(
-  bindFieldToObserver('textContent', textObs as Observer<string | null>)
-)
-
-select<HTMLInputElement>('.inp')!.use(
-  bindInput(textObs),
-)
-
-select<HTMLParagraphElement>('.out')!.use(
-  bindFieldToObserver('textContent', textObs as Observer<string | null>)
+select<HTMLButtonElement>("#add")!.use(
+  p
 )
 

@@ -7,6 +7,7 @@ export type SelectFn =
 export type UseFunction<T extends HTMLElement> =
   (...actions: Array<Action<T>>) => Select<T>
 
+
 export type Select<T extends HTMLElement> = {
   node: T | NodeListOf<T>,
   use: UseFunction<T>

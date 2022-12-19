@@ -1,4 +1,5 @@
 // src/index.ts
+import { selectNode } from "@zeppet/core";
 var setText = (text) => (element) => {
   element.textContent = text;
   return element;
@@ -19,10 +20,12 @@ var onClickClassToggle = (otherSelect, className) => (element) => {
   );
   return element;
 };
-var bindFieldToObserver = (field, obs) => (element) => {
-  obs.subscribe((newValue) => {
-    element[field] = newValue;
-  });
+var bindFieldToObs = (field, obs) => (element) => {
+  obs.subscribe((newValue) => element[field] = newValue);
+  return element;
+};
+var bindFieldToMappedObs = (field, obs, mapping) => (element) => {
+  obs.subscribeMap((newValue) => element[field] = newValue, mapping);
   return element;
 };
 var mutateOnEvent = (event, observer, mutateFn) => (element) => {
@@ -43,11 +46,35 @@ var bindInput = (obs) => (element) => {
   });
   return element;
 };
+var listIn = (obs, elementBuilder, listElementNode = "li") => (element) => {
+  element.replaceChildren(...obs.getValue().map(
+    (el) => {
+      const item = document.createElement(listElementNode);
+      return elementBuilder(el, selectNode(item)).node;
+    }
+  ));
+  obs.subscribeMap(
+    (newValue) => {
+      element.replaceChildren(...newValue);
+    },
+    (itemList) => {
+      const mappedArray = itemList.map((el) => {
+        const item = document.createElement(listElementNode);
+        const mappedItem = elementBuilder(el, selectNode(item));
+        return mappedItem.node;
+      });
+      return mappedArray;
+    }
+  );
+  return element;
+};
 export {
   addClass,
   addHandler,
-  bindFieldToObserver,
+  bindFieldToMappedObs,
+  bindFieldToObs,
   bindInput,
+  listIn,
   mutateOnEvent,
   onClickClassToggle,
   setText

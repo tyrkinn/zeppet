@@ -12,6 +12,12 @@ export const observe = <T>(defaultValue: T): Observer<T> => {
     },
     subscribe: (listener) => {
       listeners.push(listener);
+    },
+    subscribeMap: <K>(listener: Listener<K>, mapping: (value: T) => K) => {
+      const _listener: Listener<T> = (newValue: T) => {
+        listener(mapping(newValue))
+      }
+      listeners.push(_listener)
     }
   }
 }

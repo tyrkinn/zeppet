@@ -9,7 +9,7 @@ const createSelect = <T extends HTMLElement>(node: T | NodeListOf<T>): Select<T>
   node,
   use(...actions: Array<Action<T>>) {
     if (isNodeList(this.node)) {
-      const updatedNodes: NodeListOf<T> = actions.reduce(
+      const updatedNodes = actions.reduce(
         (acc, action) => {
           acc.forEach((item) => {
             item = action(item);
@@ -35,4 +35,8 @@ export const select = <T extends HTMLElement>(selector: string): Select<T> | und
   if (nodes.length === 1) return createSelect(nodes[0]);
 
   return createSelect(nodes);
+}
+
+export const selectNode = <T extends HTMLElement>(node: T): Select<T> => {
+  return createSelect(node);
 }

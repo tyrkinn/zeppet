@@ -1,1 +1,1 @@
-export { select } from './select';
+export { select, selectNode } from './select';

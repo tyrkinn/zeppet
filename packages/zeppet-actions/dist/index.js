@@ -22,13 +22,16 @@ var src_exports = {};
 __export(src_exports, {
   addClass: () => addClass,
   addHandler: () => addHandler,
-  bindFieldToObserver: () => bindFieldToObserver,
+  bindFieldToMappedObs: () => bindFieldToMappedObs,
+  bindFieldToObs: () => bindFieldToObs,
   bindInput: () => bindInput,
+  listIn: () => listIn,
   mutateOnEvent: () => mutateOnEvent,
   onClickClassToggle: () => onClickClassToggle,
   setText: () => setText
 });
 module.exports = __toCommonJS(src_exports);
+var import_core = require("@zeppet/core");
 var setText = (text) => (element) => {
   element.textContent = text;
   return element;
@@ -49,10 +52,12 @@ var onClickClassToggle = (otherSelect, className) => (element) => {
   );
   return element;
 };
-var bindFieldToObserver = (field, obs) => (element) => {
-  obs.subscribe((newValue) => {
-    element[field] = newValue;
-  });
+var bindFieldToObs = (field, obs) => (element) => {
+  obs.subscribe((newValue) => element[field] = newValue);
+  return element;
+};
+var bindFieldToMappedObs = (field, obs, mapping) => (element) => {
+  obs.subscribeMap((newValue) => element[field] = newValue, mapping);
   return element;
 };
 var mutateOnEvent = (event, observer, mutateFn) => (element) => {
@@ -73,12 +78,36 @@ var bindInput = (obs) => (element) => {
   });
   return element;
 };
+var listIn = (obs, elementBuilder, listElementNode = "li") => (element) => {
+  element.replaceChildren(...obs.getValue().map(
+    (el) => {
+      const item = document.createElement(listElementNode);
+      return elementBuilder(el, (0, import_core.selectNode)(item)).node;
+    }
+  ));
+  obs.subscribeMap(
+    (newValue) => {
+      element.replaceChildren(...newValue);
+    },
+    (itemList) => {
+      const mappedArray = itemList.map((el) => {
+        const item = document.createElement(listElementNode);
+        const mappedItem = elementBuilder(el, (0, import_core.selectNode)(item));
+        return mappedItem.node;
+      });
+      return mappedArray;
+    }
+  );
+  return element;
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   addClass,
   addHandler,
-  bindFieldToObserver,
+  bindFieldToMappedObs,
+  bindFieldToObs,
   bindInput,
+  listIn,
   mutateOnEvent,
   onClickClassToggle,
   setText

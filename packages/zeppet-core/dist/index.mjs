@@ -32,6 +32,9 @@ var select = (selector) => {
     return createSelect(nodes[0]);
   return createSelect(nodes);
 };
+var selectNode = (node) => {
+  return createSelect(node);
+};
 
 // src/core/actions/compose.ts
 var compose = (...actions) => {
@@ -50,11 +53,18 @@ var observe = (defaultValue) => {
     },
     subscribe: (listener) => {
       listeners.push(listener);
+    },
+    subscribeMap: (listener, mapping) => {
+      const _listener = (newValue) => {
+        listener(mapping(newValue));
+      };
+      listeners.push(_listener);
     }
   };
 };
 export {
   compose,
   observe,
-  select
+  select,
+  selectNode
 };
