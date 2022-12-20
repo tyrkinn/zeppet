@@ -73,6 +73,17 @@ export const select = <T extends HTMLElement>(selector: string): Select<T> | und
   return createSelect(nodes);
 }
 
+/**
+  * Same as select, but accepts single HTMLElement
+  *
+  * @see {@link select}
+  *
+  * @typeParam T - HTMLElement kind
+  *
+  * @param node - HTML node to create Select from
+  *
+  * @returns Select object for given node
+  */
 export const selectNode = <T extends HTMLElement>(node: T): Select<T> => {
   return createSelect(node);
 }
