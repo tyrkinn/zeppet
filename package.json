@@ -13,7 +13,7 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo run build --filter=docs^... && changeset publish",
-    "gen-docs": "typedoc --entryPointStrategy packages ."
+    "gen-docs": "typedoc --entryPointStrategy packages . --readme ./README.mdj"
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
