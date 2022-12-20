@@ -7,9 +7,9 @@ import { ComposeFn } from "$types";
   * @typeParam T - HTMLElement kind of composed Action
   *
   * @remarks
-  * Provide type parameter if you want your action to be used only for this type of elementsh
+  * Provide type parameter if you want your action to be used only for this type of elements
   *
-  * @param actions - actions to compose
+  * @param actionsL - actions to compose
   *
   * @example
   * Basic compose

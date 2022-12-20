@@ -12,8 +12,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=docs^... && changeset publish && pnpm run gen-docs && ntl deploy --prod",
-    "gen-docs": "typedoc --entryPointStrategy packages . --readme ./README.mdj"
+    "release": "turbo run build --filter=docs^... && changeset publish",
+    "gen-docs": "typedoc --entryPointStrategy packages . --readme ./README.mdj",
+    "docs": "pnpm run gen-docs && ntl deploy --prod"
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
