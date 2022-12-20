@@ -4,6 +4,10 @@
 
 Modular Javascript/Typescript library for dom manipulation with useful builtin actions
 
+## Documentation
+
+Netlify Live TSDoc site: https://zeppet-docs.netlify.app
+
 ## Installation
 
 ```shell
