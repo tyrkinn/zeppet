@@ -1,3 +1,3 @@
-export { select, selectNode } from './select';
-export { compose } from './actions';
+export { select, selectOne } from './select';
+export { compose, use } from './actions';
 export { observe } from './observer';

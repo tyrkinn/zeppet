@@ -1,5 +1,3 @@
-export type ObserveFn = <T>(defaultValue: T) => Observer<T>
-
 export type Mutator<T> = (previousValue: T) => T;
 
 export type Mutate<T> = (mutator: Mutator<T>) => void;

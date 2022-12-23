@@ -1,5 +1,5 @@
 import './style.css';
-import { select, observe, compose } from '@zeppet/core';
+import { observe, compose, selectOne } from '@zeppet/core';
 import { bindInput, bindFieldToObs } from '@zeppet/actions';
 
 const useBindedInputAction = <T extends HTMLElement>() => {
@@ -14,13 +14,12 @@ const useBindedInputAction = <T extends HTMLElement>() => {
   }
 }
 
-const { p, input } = useBindedInputAction<HTMLButtonElement>()
+const { p, input } = useBindedInputAction()
 
-select<HTMLInputElement>("#inp")!.use(
-  input
+input(
+  selectOne<HTMLInputElement>("#inp")!
 )
 
-select<HTMLButtonElement>("#add")!.use(
-  p
+p(
+  selectOne<HTMLButtonElement>("#add")!
 )
-

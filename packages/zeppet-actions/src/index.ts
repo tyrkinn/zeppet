@@ -1,5 +1,4 @@
-import type { Action, ActionFn, Select, Observer } from '@zeppet/core';
-import { selectNode } from '@zeppet/core';
+import type { ActionFn, Observer, Action } from '@zeppet/core';
 
 export const setText = (text: string): ActionFn => element => {
   element.textContent = text;
@@ -11,28 +10,21 @@ export const addClass = (...classes: string[]): ActionFn => element => {
   return element;
 }
 
-export const addHandler =
+export const toggleClass = (className: string): ActionFn => element => {
+  element.classList.toggle(className)
+  return element;
+}
+
+export const listen =
   <K extends keyof HTMLElementEventMap>
     (eventName: K, handler: (event: HTMLElementEventMap[K]) => void): ActionFn => element => {
       element.addEventListener(eventName, handler);
       return element;
     }
 
-export const onClickClassToggle =
-  <T extends HTMLElement>
-    (otherSelect: Select<T>, className: string): ActionFn => element => {
-      otherSelect.use(
-        addHandler('click', () => {
-          element.classList.toggle(className)
-        })
-      )
-      return element;
-    }
-
-
 export const bindFieldToObs =
   <T extends HTMLElement, K extends keyof T>
-    (field: K, obs: Observer<NonNullable<T[K]>>): Action<T> => element => {
+    (field: K, obs: Observer<NonNullable<T[K]>>) => (element: T) => {
       obs.subscribe((newValue) => element[field] = newValue)
       return element
     }
@@ -75,13 +67,13 @@ export const listIn =
   <T extends HTMLElement, K extends keyof HTMLElementTagNameMap, V>
     (
       obs: Observer<Array<V>>,
-      elementBuilder: (arrayItem: V, listItem: Select<HTMLElementTagNameMap[K]>) => Select<HTMLElementTagNameMap[K]>,
+      elementBuilder: (arrayItem: V, listItem: HTMLElementTagNameMap[K]) => HTMLElementTagNameMap[K],
       listElementNode: K = 'li' as K,
     ): Action<T> => element => {
       element.replaceChildren(...obs.getValue().map(
         el => {
           const item = document.createElement(listElementNode);
-          return elementBuilder(el, selectNode(item)).node as HTMLElementTagNameMap[K];
+          return elementBuilder(el, item);
         }
       ))
       obs.subscribeMap<HTMLElementTagNameMap[K][]>(
@@ -89,8 +81,8 @@ export const listIn =
         (itemList) => {
           const mappedArray = itemList.map((el) => {
             const item = document.createElement(listElementNode);
-            const mappedItem = elementBuilder(el, selectNode(item));
-            return mappedItem.node as HTMLElementTagNameMap[K];
+            const mappedItem = elementBuilder(el, item);
+            return mappedItem as HTMLElementTagNameMap[K];
           })
           return mappedArray;
         });

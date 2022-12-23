@@ -1,13 +1,8 @@
 import { Action } from "$types";
-import { ComposeFn } from "$types";
-
 /**
   * Function that compose your actions into one action
   *
-  * @typeParam T - HTMLElement kind of composed Action
-  *
-  * @remarks
-  * Provide type parameter if you want your action to be used only for this type of elements
+  * @typeParam T - Type of HTMLElement
   *
   * @param actionsL - actions to compose
   *
@@ -27,6 +22,6 @@ import { ComposeFn } from "$types";
   * 
   * @returns New action that includes all composed actions
   */
-export const compose: ComposeFn = <T extends HTMLElement>(...actions: Action<T>[]) => {
-  return actions.reduceRight((acc, fn) => ((el: T) => fn(acc(el))) as Action<T>)
+export const compose = <T extends HTMLElement>(...actions: Action<T>[]) => {
+  return actions.reduceRight((acc, next) => (element) => next(acc(element)))
 }
