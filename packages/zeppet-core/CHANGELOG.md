@@ -1,5 +1,11 @@
 # @zeppet/core
 
+## 1.0.1
+
+### Patch Changes
+
+- Versioning bug
+
 ## 1.0.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @zeppet/actions
 
+## 1.0.1
+
+### Patch Changes
+
+- Versioning bug
+- Updated dependencies
+  - @zeppet/core@1.0.1
+
 ## 1.0.0
 
 ### Minor Changes
