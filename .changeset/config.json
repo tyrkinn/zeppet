@@ -4,6 +4,6 @@
   "baseBranch": "main",
   "commit": false,
   "access": "public",
-  "ignore": ["@zeppet/docs", "@zeppet/example"],
+  "ignore": ["@zeppet/example"],
   "fixed": [["@zeppet/*"]]
 }
