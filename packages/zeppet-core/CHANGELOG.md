@@ -1,5 +1,11 @@
 # @zeppet/core
 
+## 1.0.0
+
+### Minor Changes
+
+- Complete rewrite with API changes
+
 ## 0.0.5
 
 ### Patch Changes

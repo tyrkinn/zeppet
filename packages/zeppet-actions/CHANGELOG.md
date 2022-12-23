@@ -1,5 +1,16 @@
 # @zeppet/actions
 
+## 1.0.0
+
+### Minor Changes
+
+- Complete rewrite with API changes
+
+### Patch Changes
+
+- Updated dependencies
+  - @zeppet/core@1.0.0
+
 ## 0.0.5
 
 ### Patch Changes
