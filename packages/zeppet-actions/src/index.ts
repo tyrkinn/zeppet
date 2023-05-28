@@ -67,21 +67,21 @@ export const listIn =
   <T extends HTMLElement, K extends keyof HTMLElementTagNameMap, V>
     (
       obs: Observer<Array<V>>,
-      elementBuilder: (arrayItem: V, listItem: HTMLElementTagNameMap[K]) => HTMLElementTagNameMap[K],
+      elementBuilder: (arrayItem: V, arrayItemIndex: number, listItem: HTMLElementTagNameMap[K]) => HTMLElementTagNameMap[K],
       listElementNode: K = 'li' as K,
     ): Action<T> => element => {
       element.replaceChildren(...obs.getValue().map(
-        el => {
+        (el, idx) => {
           const item = document.createElement(listElementNode);
-          return elementBuilder(el, item);
+          return elementBuilder(el, idx, item);
         }
       ))
       obs.subscribeMap<HTMLElementTagNameMap[K][]>(
         (newValue) => { element.replaceChildren(...newValue) },
         (itemList) => {
-          const mappedArray = itemList.map((el) => {
+          const mappedArray = itemList.map((el, idx) => {
             const item = document.createElement(listElementNode);
-            const mappedItem = elementBuilder(el, item);
+            const mappedItem = elementBuilder(el, idx, item);
             return mappedItem as HTMLElementTagNameMap[K];
           })
           return mappedArray;
