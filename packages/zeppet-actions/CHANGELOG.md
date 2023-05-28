@@ -1,5 +1,16 @@
 # @zeppet/actions
 
+## 2.0.0
+
+### Minor Changes
+
+- d35492d: Add IIFE build target
+
+### Patch Changes
+
+- Updated dependencies [d35492d]
+  - @zeppet/core@2.0.0
+
 ## 1.0.1
 
 ### Patch Changes
