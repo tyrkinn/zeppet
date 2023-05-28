@@ -10,12 +10,10 @@
   },
   "dependencies": {
     "@zeppet/actions": "workspace:*",
-    "@zeppet/core": "workspace:*",
-    "@zeppet/utils": "workspace:*"
+    "@zeppet/core": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^4.9.3",
-    "vite": "^4.0.0",
-    "@zeppet/core": "workspace:*"
+    "vite": "^4.0.0"
   }
 }
